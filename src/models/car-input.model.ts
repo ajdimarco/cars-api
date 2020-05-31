@@ -6,25 +6,35 @@ import {
   IsOptional,
   IsString,
   IsUrl,
-  ValidateNested
+  ValidateNested,
+  Min,
+  Max
 } from 'class-validator';
 import { Specs } from './car.model';
 
 export class PerformanceInput {
   @IsOptional()
   @IsNumber()
+  @Min(0.01)
+  @Max(100)
   zero_to_sixty_mph?: number;
 
   @IsOptional()
   @IsNumber()
+  @Min(0.01)
+  @Max(330)
   top_speed_mph?: number;
 
   @IsOptional()
   @IsNumber()
+  @Min(0.01)
+  @Max(4000)
   horsepower?: number;
 
   @IsOptional()
   @IsNumber()
+  @Min(0.01)
+  @Max(4000)
   torque_lb_ft?: number;
 }
 
@@ -84,6 +94,8 @@ export class EngineInput {
 
   @IsOptional()
   @IsNumber()
+  @Min(0)
+  @Max(20)
   displacement_liters?: number;
 
   @IsOptional()
@@ -108,6 +120,8 @@ export class TransmissionInput {
 
   @IsOptional()
   @IsInt()
+  @Min(1)
+  @Max(20)
   gears?: number;
 }
 
@@ -141,20 +155,20 @@ export class SpecsInput {
 }
 
 export class CarInput {
-  @IsInt() year: number;
+  @IsInt() @Min(1900) @Max(2030) year: number;
   @IsString() make: string;
   @IsString() model: string;
   @IsString() country: string;
-  @IsInt() styling: number;
-  @IsInt() acceleration: number;
-  @IsInt() handling: number;
-  @IsInt() fun_factor: number;
-  @IsInt() cool_factor: number;
-  @IsInt() features: number;
-  @IsInt() comfort: number;
-  @IsInt() quality: number;
-  @IsInt() practicality: number;
-  @IsInt() value: number;
+  @IsInt() @Min(1) @Max(10) styling: number;
+  @IsInt() @Min(1) @Max(10) acceleration: number;
+  @IsInt() @Min(1) @Max(10) handling: number;
+  @IsInt() @Min(1) @Max(10) fun_factor: number;
+  @IsInt() @Min(1) @Max(10) cool_factor: number;
+  @IsInt() @Min(1) @Max(10) features: number;
+  @IsInt() @Min(1) @Max(10) comfort: number;
+  @IsInt() @Min(1) @Max(10) quality: number;
+  @IsInt() @Min(1) @Max(10) practicality: number;
+  @IsInt() @Min(1) @Max(10) value: number;
 
   @IsOptional()
   @IsString()
